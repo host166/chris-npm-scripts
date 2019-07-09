@@ -15,7 +15,7 @@ const images = require("images");
 /**
  * @param config {object} 配置参数：
  * 
- * @param spritepath {string} 样式文件链接雪碧图的路径
+ * @param spritepath {string} 样式文件北京图片链接sprite图的路径
  * @param rowcount {number} 第一行最大放几张图 （因为需要利用第一行的总宽度来创建sprite图的场景尺寸）
  * @param listenpath {string} 监听目录
  * @param outfilepath {string} 输出文件到达的目录 （sprite图片和css文件会被输出到这里）
@@ -38,12 +38,28 @@ class AutoSprite{
 
         this.addToStage();
     }
-    // apply(compiler){
-    //     // webpack在入口准备读取entry时触发
-    //     compiler.plugin("entry-option", (compilation)=>{
-    //         this.forEachPointTypeImage();
-    //     });
-    // }
+    apply(compiler){
+        // webpack在入口准备读取entry时触发
+        compiler.plugin("entry-option", (compilation)=>{
+            this.addToStage();
+        });
+        compiler.plugin("after-compile", (compilation,callback)=>{
+            if(!compilation.contextDependencies) compilation.contextDependencies = [];
+
+            if( !compilation.contextDependencies.filter(item=>item==this.configs.path).length ){
+                compilation.contextDependencies.push(this.configs.path);
+            };
+            
+            compilation.contextDependencies.push(this.configs.listenpath);
+            // console.log( "hahahaha fk" );
+            callback();
+        });
+        compiler.plugin("watch-run", (watching, callback)=>{
+            this.addToStage();
+            callback();
+        });
+    }
+
     addToStage(){
         
         this.init();
