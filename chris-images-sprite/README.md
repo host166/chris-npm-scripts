@@ -1,5 +1,3 @@
-
-
 ## Installation
 
 ```bash
@@ -42,3 +40,6 @@ new AutoSprite({
 });
 
 ```
+
+License
+MIT
