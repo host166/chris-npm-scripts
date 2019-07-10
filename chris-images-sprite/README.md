@@ -1,5 +1,5 @@
 ## Installation
-
+ 
 ```bash
 $ npm i chris-images-sprite -D
 ```
