@@ -1,6 +1,6 @@
 {
   "name": "chris-images-sprite",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A super plugin for images sprite that generates.",
   "main": "index.js",
   "scripts": {

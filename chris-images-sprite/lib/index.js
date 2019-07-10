@@ -353,7 +353,7 @@ class AutoSprite{
         var aImgStroe = [],
             deepLoopSearch = (configpath)=>{
                 var readdir = fs.readdirSync( configpath ),
-                    files = readdir.filter(item=> /\.(png|jpe?g|gif|svg)(\?.*)?$/gi.test(item) );
+                    files = readdir.filter(item=> /\.(png|jpe?g)(\?.*)?$/gi.test(item) );   // gif|svg
 
                 files.map(item=>{
                     aImgStroe.push({
