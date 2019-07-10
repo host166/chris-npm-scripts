@@ -46,8 +46,8 @@ class AutoSprite{
         compiler.plugin("after-compile", (compilation,callback)=>{
             if(!compilation.contextDependencies) compilation.contextDependencies = [];
 
-            if( !compilation.contextDependencies.filter(item=>item==this.configs.path).length ){
-                compilation.contextDependencies.push(this.configs.path);
+            if( !compilation.contextDependencies.filter(item=>item==this.configs.listenpath).length ){
+                compilation.contextDependencies.push(this.configs.listenpath);
             };
             
             compilation.contextDependencies.push(this.configs.listenpath);
