@@ -21,7 +21,7 @@ $ npm i chris-images-sprite -D
 /**
  * @param config {object} 配置参数：
  * 
- * @param spritepath {string} 样式文件北京图片链接sprite图的路径
+ * @param spritepath {string} 样式文件中background:url(sprite图的路径) no-repeat;
  * @param rowcount {number} 第一行最大放几张图 （因为需要利用第一行的总宽度来创建sprite图的场景尺寸）
  * @param listenpath {string} 监听目录
  * @param outfilepath {string} 输出文件到达的目录 （sprite图片和css文件会被输出到这里）
