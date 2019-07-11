@@ -9,7 +9,7 @@ $ npm i chris-images-sprite -D
     2. 正则提取图片：/\.(png|jpe?g)(\?.*)?$/
     3. 合理填充sprite画布
 
-## 插件有点
+## 插件优点
     1. 比传统方式更加容易维护（想换那张图直接换掉，会自动管理样式和sprite图）
     2. 在客户端减少http的请求
     3. 优雅的优化了代码量
@@ -30,6 +30,7 @@ $ npm i chris-images-sprite -D
  * 
 **/
 
+
 new AutoSprite({
     rowcount: 5,
     margin: 10,
@@ -41,5 +42,9 @@ new AutoSprite({
 
 ```
 
-License
+## if you like it，thank you。
+
+
+
+### License
 MIT

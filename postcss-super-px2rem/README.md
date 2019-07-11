@@ -15,7 +15,7 @@ A plugin for PostCSS that generates rem units from pixel units.
 ## Installation
 
 ```bash
-$ npm i --save postcss-plugin-super-px2rem
+$ npm i postcss-plugin-super-px2rem -S
 ```
 
 ## Usage
@@ -137,6 +137,9 @@ Default:
 - `mediaQuery` (Boolean) Allow px to be converted in media queries.
 - `minPixelValue` (Number) Set the minimum pixel value to replace.
 - `customadaption` (String) Set the type to be converted
+
+
+## if you like it，thank you。
 
 ### License
 MIT

@@ -1,8 +1,7 @@
-
 {
-  "name": "chris-images-sprite",
-  "version": "0.0.4",
-  "description": "A super plugin for images sprite that generates.",
+  "name": "chris-auto-utils",
+  "version": "0.0.1",
+  "description": "this is a plug-in for automatically extracting tool classes.",
   "main": "index.js",
   "scripts": {
     
@@ -12,10 +11,8 @@
     "url": "https://github.com/host166/chris-npm-scripts"
   },
   "keywords": [
-    "images",
     "plugin",
-    "sprite",
-    "webpackSprite"
+    "utils"
   ],
   "author": "chris <host166@github.com>",
   "license": "MIT",
@@ -24,7 +21,8 @@
     
   },
   "devDependencies": {
-    "images": "^3.0.2"
+    "MD5": "^1.3.0",
+    "terser": "^4.0.0"
   },
   "files": [
     "lib",
