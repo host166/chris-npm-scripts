@@ -65,15 +65,15 @@ class AutoSprite{
         
         this.init();
 
-        this.oImageSourceStore = this.setImageInfomation( 
+        const oImageSourceStore = this.oImageSourceStore = this.setImageInfomation( 
             this.extractImageAbsolutePath(this.configs.listenpath)
         );
-        this.arrayImageInfo = this.markSeated( 
-            this.extractClassification(this.oImageSourceStore)["handlerArrayGroup"]
+        const arrayImageInfo = this.arrayImageInfo = this.markSeated( 
+            this.extractClassification(oImageSourceStore)["handlerArrayGroup"]
         );
         this.createStageSpace({
-            "main": this.arrayImageInfo,
-            "other": this.extractClassification(this.oImageSourceStore)["otherArray"]
+            "main": arrayImageInfo,
+            "other": this.extractClassification(oImageSourceStore)["otherArray"]
         });
     }
     // 创建舞台 和 css img 等
@@ -376,7 +376,7 @@ class AutoSprite{
 
     init(){
         // 舞台场景的空间
-        this.stageSpace = [];
+        // this.stageSpace = [];
 
         // 收集目录数据
         // this.oDirectory = {};
