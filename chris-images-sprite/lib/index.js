@@ -10,7 +10,8 @@
 const path   = require('path');
 const fs     = require('fs');
 const images = require("images");
-
+//rimraf插件是用来执行UNIX命令rm和-rf，用来删除文件和文件夹的，清空旧文件
+const rm = require('rimraf');
 
 /**
  * @param config {object} 配置参数：
@@ -35,8 +36,7 @@ class AutoSprite{
             outfilepath: "./common/less/sprites"
         };
         for(let x in opts) this.configs[x] = opts[x];
-
-        this.addToStage();
+        // this.addToStage();
     }
     apply(compiler){
         // webpack在入口准备读取entry时触发
@@ -52,7 +52,6 @@ class AutoSprite{
                 // 合并要监听的目录
                 compilation.contextDependencies = compilation.contextDependencies.concat(this.aDirectory);
                 compilation.contextDependencies.push(this.configs.listenpath);
-                // console.log("len:", len);
             };
             // console.log( "compilation.contextDependencies:", compilation.contextDependencies );
             
@@ -60,14 +59,14 @@ class AutoSprite{
         });
 
         compiler.plugin("watch-run", (watching, callback)=>{
-
             this.addToStage();
             callback();
         });
     }
 
     addToStage(){
-        
+        this.rmdir(this.configs.outfilepath);
+
         this.init();
 
         const oImageSourceStore = this.setImageInfomation( 
@@ -129,9 +128,8 @@ class AutoSprite{
             spriteStageSpaceSize.save(`${this.configs.outfilepath}/sprite_${item.name}.png`,{quality : this.configs.quality});
         });
 
-        // console.log( '---------- Sprite图 创建完成 ----------' );
+        console.log( '---------- Sprite图 创建完成 ----------' );
     }
-
     // 设置尺寸
     setStageSpaceSize(arr=[]){
         arr.map(item=>{
@@ -147,7 +145,6 @@ class AutoSprite{
 
         return arr;
     }
-
     // 对号入座
     markSeated(response){
         var page = 0, 
@@ -182,7 +179,6 @@ class AutoSprite{
 
                         itemObject.childlist[minIndex][childLen].push(v);
                         secondaryIndex.push(i);
-                        // console.log( this.getMaxMin(itemObject.main.map(v=>v.columnHeight),"min"), v.name );
                         // itemObject.secondary.splice(i,1);
                     }else{
                         break;
@@ -247,7 +243,6 @@ class AutoSprite{
 
         return arrays;
     }
-
     // 设置主坐标之后分类提取
     extractClassification(resp){
         var handlerArrayGroup = [],
@@ -309,7 +304,6 @@ class AutoSprite{
         };
         // handlerArrayGroup.map(v=>console.log(v));
     }
-
     // 设置图片的属性和信息 并返回
     setImageInfomation(resp){
         for(let x in resp){
@@ -379,8 +373,6 @@ class AutoSprite{
 
         return aImgStroe;
     }
-    
-    
 
     init(){
         // 舞台场景的空间
@@ -398,6 +390,7 @@ class AutoSprite{
         // 保存当前组最宽的前几张图
         // this.maxStoreSize = [];
     }
+
     // 获取最大值or最小值
     getMaxMin(arr,param="max"){
         try {
@@ -449,7 +442,6 @@ class AutoSprite{
     flatInfinity(arr=[]) {
         return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(this.flatInfinity(val)) : acc.concat(val), []);
     }
-
     // dev tool
     setFileSync(url,val){
         var _potinPath = url.split("/"),
@@ -472,6 +464,32 @@ class AutoSprite{
             encoding: "utf8",
             flags: "a",
             mode: 438
+        });
+    }
+    // custom method rm
+    deleteall(path) {
+        var files = [];
+        if(fs.existsSync(path)) {
+            files = fs.readdirSync(path);
+            files.forEach(function(file, index) {
+                var curPath = path + "/" + file;
+                if(fs.statSync(curPath).isDirectory()) { // recurse
+                    deleteall(curPath);
+                } else { // delete file
+                    fs.unlinkSync(curPath);
+                }
+            });
+            fs.rmdirSync(path);
+        };
+    }
+    // rm dir
+    rmdir(pathurl){
+        if( !fs.existsSync(pathurl) ){
+            return false;
+        };
+        rm( pathurl, err=>{
+            if (err) throw err
+            // console.log("err remove:",err);
         });
     }
 }
