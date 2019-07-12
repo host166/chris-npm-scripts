@@ -43,19 +43,24 @@ class AutoSprite{
         compiler.plugin("entry-option", (compilation)=>{
             this.addToStage();
         });
-
+        // 每次都会执行它 手动加入监听依赖
         compiler.plugin("after-compile", (compilation,callback)=>{
             if(!compilation.contextDependencies) compilation.contextDependencies = [];
 
             let len = compilation.contextDependencies.filter(item=>item==this.configs.listenpath).length;
             if( !len ){
+                // 合并要监听的目录
+                compilation.contextDependencies = compilation.contextDependencies.concat(this.aDirectory);
                 compilation.contextDependencies.push(this.configs.listenpath);
+                // console.log("len:", len);
             };
+            // console.log( "compilation.contextDependencies:", compilation.contextDependencies );
             
             callback();
         });
 
         compiler.plugin("watch-run", (watching, callback)=>{
+
             this.addToStage();
             callback();
         });
@@ -65,16 +70,17 @@ class AutoSprite{
         
         this.init();
 
-        const oImageSourceStore = this.oImageSourceStore = this.setImageInfomation( 
+        const oImageSourceStore = this.setImageInfomation( 
             this.extractImageAbsolutePath(this.configs.listenpath)
         );
-        const arrayImageInfo = this.arrayImageInfo = this.markSeated( 
+        const arrayImageInfo = this.markSeated( 
             this.extractClassification(oImageSourceStore)["handlerArrayGroup"]
         );
         this.createStageSpace({
             "main": arrayImageInfo,
             "other": this.extractClassification(oImageSourceStore)["otherArray"]
         });
+        // console.log( "this.aDirectory:", this.aDirectory );
     }
     // 创建舞台 和 css img 等
     createStageSpace(obj){
@@ -123,7 +129,7 @@ class AutoSprite{
             spriteStageSpaceSize.save(`${this.configs.outfilepath}/sprite_${item.name}.png`,{quality : this.configs.quality});
         });
 
-        console.log( '---------- 创建完成 ----------' );
+        // console.log( '---------- Sprite图 创建完成 ----------' );
     }
 
     // 设置尺寸
@@ -339,6 +345,8 @@ class AutoSprite{
                     "data": this.extractFiles(_path),
                     "$path": _path
                 };
+                // 收集目录
+                this.aDirectory.push(_path);
             };
         });
 
@@ -379,13 +387,13 @@ class AutoSprite{
         // this.stageSpace = [];
 
         // 收集目录数据
-        // this.oDirectory = {};
+        this.aDirectory = [];
 
         // 保存分组好的图片组
-        this.arrayImageInfo = [];
+        // this.arrayImageInfo = [];
         
         // 保存图片数据的仓库 - 处理后做原始数据
-        this.oImageSourceStore = {};
+        // this.oImageSourceStore = {};
 
         // 保存当前组最宽的前几张图
         // this.maxStoreSize = [];

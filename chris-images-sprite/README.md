@@ -2,6 +2,7 @@
  
 ```bash
 $ npm i chris-images-sprite -D
+
 ```
 
 ## 插件功能
@@ -9,10 +10,12 @@ $ npm i chris-images-sprite -D
     2. 正则提取图片：/\.(png|jpe?g)(\?.*)?$/
     3. 合理填充sprite画布
 
+
 ## 插件优点
     1. 比传统方式更加容易维护（想换哪张图直接换掉，会自动管理样式和sprite图）
     2. 在客户端减少http的请求
     3. 优雅的优化了代码量
+
 
 ## 调用
 
@@ -30,6 +33,7 @@ $ npm i chris-images-sprite -D
  * 
 **/
 
+const AutoSprite = require("chris-images-sprite");
 
 new AutoSprite({
     rowcount: 5,
@@ -42,8 +46,12 @@ new AutoSprite({
 
 ```
 
-## if you like it，thank you。
+##PS：
+> "listenpath" !== "outfilepath"
+> 请不要把输出文件的路径输入到监听目录中，因为这样会造成循环监听。
 
+
+## if you like it，thank you。
 
 
 ### License

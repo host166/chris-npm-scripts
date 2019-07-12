@@ -1,7 +1,7 @@
 
 {
   "name": "chris-images-sprite",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "A super plugin for images sprite that generates.",
   "main": "index.js",
   "scripts": {
@@ -21,10 +21,10 @@
   "license": "MIT",
   "homepage": "https://github.com/host166/chris-npm-scripts.git#readme",
   "dependencies": {
-    
+    "images": "^3.0.2"
   },
   "devDependencies": {
-    "images": "^3.0.2"
+    
   },
   "files": [
     "lib",
