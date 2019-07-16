@@ -22,6 +22,7 @@ const rm = require('rimraf');
  * @param outfilepath {string} 输出文件到达的目录 （sprite图片和css文件会被输出到这里）
  * @param margin {number} 外边界距离平分到四边 每边=10/2
  * @param quality {number} 图片压缩值 值越小图片质量越小
+ * @param name {string} 可以任意添加生成文件的后缀名
  * 
 **/
 
@@ -31,6 +32,7 @@ class AutoSprite{
             margin: 10,
             rowcount: 5,
             quality: 90,
+            name: "",
             spritepath: "./",
             listenpath: "./common/assets",
             outfilepath: "./common/less/sprites"
@@ -98,6 +100,7 @@ class AutoSprite{
                     "commonstyles": "",
                     "data": ""
                 };
+                // _name = this.configs.name;
             
             childlistConcat.map(v=>{
                 // console.log((v.path))
@@ -119,6 +122,8 @@ class AutoSprite{
             styleFile["commonstyles"] = childlistConcat.map(v=>`.${v.name}`)+`{background:url(${this.configs.spritepath}sprite_${item.name}.png) no-repeat; background-size:${item.maxWidth}px auto; display:inline-block;}`;
             styleFile["data"] = styleFile["commonstyles"]+styleFile["styles"].join("")
 
+            // 自定义添加文件名
+            // _name = _name?`sprite_${item.name}_${_name}.less`:`sprite_${item.name}`;
             // create file
             this.setFileSync(
                 `${this.configs.outfilepath}/sprite_${item.name}.less`,
