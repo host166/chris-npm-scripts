@@ -11,6 +11,6 @@
 
 [^_^]:
     如果你喜欢，奖励作者一杯咖啡吧。~
-    <img align="left" width="135" height="auto"
-        title="Please give me a cup of coffee"
-        src="https://github.com/host166/chris-npm-scripts/blob/master/library/WechatIGM2.jpeg" />
+    
+[^_^]:
+    <img align="left" width="135" height="auto" title="Please give me a cup of coffee" src="https://github.com/host166/chris-npm-scripts/blob/master/library/WechatIGM2.jpeg" />
