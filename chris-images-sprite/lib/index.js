@@ -124,6 +124,7 @@ class AutoSprite{
 
             // 自定义添加文件名
             // _name = _name?`sprite_${item.name}_${_name}.less`:`sprite_${item.name}`;
+            
             // create file
             this.setFileSync(
                 `${this.configs.outfilepath}/sprite_${item.name}.less`,
@@ -133,7 +134,7 @@ class AutoSprite{
             spriteStageSpaceSize.save(`${this.configs.outfilepath}/sprite_${item.name}.png`,{quality : this.configs.quality});
         });
 
-        console.log( '---------- Sprite图 创建完成 ----------' );
+        console.log( `---------- Sprite图 创建完成 ----------` );
     }
     // 设置尺寸
     setStageSpaceSize(arr=[]){
