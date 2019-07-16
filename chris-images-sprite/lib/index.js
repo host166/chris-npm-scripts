@@ -123,8 +123,8 @@ class AutoSprite{
             styleFile["data"] = styleFile["commonstyles"]+styleFile["styles"].join("")
 
             // 自定义添加文件名
-            // _name = _name?`sprite_${item.name}_${_name}.less`:`sprite_${item.name}`;
-            
+            // _name = _name?`sprite_${item.name}_${_name}`:`sprite_${item.name}`;
+
             // create file
             this.setFileSync(
                 `${this.configs.outfilepath}/sprite_${item.name}.less`,
