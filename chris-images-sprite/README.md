@@ -30,6 +30,7 @@ $ npm i chris-images-sprite -D
  * @param outfilepath {string} 输出文件到达的目录 （sprite图片和css文件会被输出到这里）
  * @param margin {number} 外边界距离平分到四边 每边=10/2
  * @param quality {number} 图片压缩值 值越小图片质量越小
+ * @param name {string} 可以任意添加生成文件的后缀名
  * 
 **/
 

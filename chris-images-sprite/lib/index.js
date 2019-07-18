@@ -22,6 +22,7 @@ const rm = require('rimraf');
  * @param outfilepath {string} 输出文件到达的目录 （sprite图片和css文件会被输出到这里）
  * @param margin {number} 外边界距离平分到四边 每边=10/2
  * @param quality {number} 图片压缩值 值越小图片质量越小
+ * @param suffixname {string} 样式文件扩展名 支持：less sass css等
  * @param name {string} 可以任意添加生成文件的后缀名
  * 
 **/
@@ -33,6 +34,7 @@ class AutoSprite{
             rowcount: 5,
             quality: 90,
             name: "",
+            suffixname: "less",
             spritepath: "./",
             listenpath: "./common/assets",
             outfilepath: "./common/less/sprites"
@@ -127,7 +129,7 @@ class AutoSprite{
 
             // create file
             this.setFileSync(
-                `${this.configs.outfilepath}/sprite_${item.name}.less`,
+                `${this.configs.outfilepath}/sprite_${item.name}.${this.configs.suffixname}`,
                 styleFile["data"]
             );
             // create imgage type png
