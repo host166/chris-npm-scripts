@@ -1,7 +1,7 @@
 ## Installation
  
 ```bash
-$ npm i utilsjs -S
+$ npm i chris-utilsjs -S
 ```
 
 ## 插件功能
@@ -11,7 +11,7 @@ $ npm i utilsjs -S
     1. 通用方法不必在业务中重复实现。
 
 ## 调用
-    import {iDate,query} from "utilsjs";
+    import {iDate,query} from "chris-utilsjs";
 
 
 ## 补充
