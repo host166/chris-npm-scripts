@@ -1,0 +1,34 @@
+{
+  "name": "utilsjs",
+  "version": "0.0.1",
+  "description": "this is a client utils",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/host166/chris-npm-scripts"
+  },
+  "keywords": [
+    "chris",
+    "js",
+    "client",
+    "utils"
+  ],
+  "author": "chris <host166@github.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/host166/chris-npm-scripts.git#readme",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    
+  },
+  "files": [
+    "lib",
+    "index.js",
+    "package.json",
+    "README.md"
+  ]
+}
