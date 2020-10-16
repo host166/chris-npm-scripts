@@ -47,18 +47,29 @@ class AutoSprite{
         compiler.plugin("entry-option", (compilation)=>{
             this.addToStage();
         });
+        // // 每次都会执行它 手动加入监听依赖
+        // compiler.plugin("after-compile", (compilation,callback)=>{
+        //     if(!compilation.contextDependencies) compilation.contextDependencies = [];
+
+        //     let len = compilation.contextDependencies.filter(item=>item==this.configs.listenpath).length;
+        //     if( !len ){
+        //         // 合并要监听的目录
+        //         compilation.contextDependencies = compilation.contextDependencies.concat(this.aDirectory);
+        //         compilation.contextDependencies.push(this.configs.listenpath);
+        //     };
+        //     // console.log( "compilation.contextDependencies:", compilation.contextDependencies );
+            
+        //     callback();
+        // });
         // 每次都会执行它 手动加入监听依赖
         compiler.plugin("after-compile", (compilation,callback)=>{
             if(!compilation.contextDependencies) compilation.contextDependencies = [];
-
-            let len = compilation.contextDependencies.filter(item=>item==this.configs.listenpath).length;
+            let len = Array.from(compilation.contextDependencies).filter(item=>item==this.configs.listenpath).length;
             if( !len ){
                 // 合并要监听的目录
-                compilation.contextDependencies = compilation.contextDependencies.concat(this.aDirectory);
-                compilation.contextDependencies.push(this.configs.listenpath);
+                compilation.contextDependencies = new Set([...compilation.contextDependencies].concat(this.aDirectory));
+                compilation.contextDependencies.add(this.configs.listenpath);
             };
-            // console.log( "compilation.contextDependencies:", compilation.contextDependencies );
-            
             callback();
         });
 
