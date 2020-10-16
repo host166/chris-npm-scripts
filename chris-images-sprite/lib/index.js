@@ -80,7 +80,8 @@ class AutoSprite{
     }
 
     addToStage(){
-        this.rmdir(this.configs.outfilepath);
+        // webpack4下要隐藏掉这句话
+        // this.rmdir(this.configs.outfilepath);
 
         this.init();
 
