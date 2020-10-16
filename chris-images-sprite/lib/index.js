@@ -61,7 +61,7 @@ class AutoSprite{
             
         //     callback();
         // });
-        // 每次都会执行它 手动加入监听依赖
+        // webpack4的处理 - 每次都会执行它 手动加入监听依赖
         compiler.plugin("after-compile", (compilation,callback)=>{
             if(!compilation.contextDependencies) compilation.contextDependencies = [];
             let len = Array.from(compilation.contextDependencies).filter(item=>item==this.configs.listenpath).length;
