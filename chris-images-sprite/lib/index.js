@@ -27,6 +27,10 @@ const rm = require('rimraf');
  * 
 **/
 
+// 用来比较相同保存属性
+let startArray = [];
+let changeArray = [];
+
 class AutoSprite{
     constructor(opts){
         this.configs = {
@@ -46,6 +50,7 @@ class AutoSprite{
         // webpack在入口准备读取entry时触发
         compiler.plugin("entry-option", (compilation)=>{
             this.addToStage();
+            startArray = this.isEqualStore(this.extractImageAbsolutePath(this.configs.listenpath));
         });
         // // 每次都会执行它 手动加入监听依赖
         // compiler.plugin("after-compile", (compilation,callback)=>{
@@ -74,9 +79,17 @@ class AutoSprite{
         });
 
         compiler.plugin("watch-run", (watching, callback)=>{
-            this.addToStage();
+            changeArray = this.isEqualStore(this.extractImageAbsolutePath(this.configs.listenpath));
+            let concatArray = [...new Set([...startArray,...changeArray])];
+            // 比较合并后的数据如果跟最初的不一致，那么就是发生了变化
+            // console.log( concatArray.length, startArray, changeArray );
+            if( concatArray.length!==startArray.length ){
+                this.addToStage();
+            };
+            // console.log('watch-run');
             callback();
         });
+        
     }
 
     addToStage(){
@@ -409,6 +422,19 @@ class AutoSprite{
 
         // 保存当前组最宽的前几张图
         // this.maxStoreSize = [];
+    }
+    
+    // 获取图片路径数据
+    isEqualStore(respdata){
+        let response = [];
+        for(let x in respdata){
+            let item = respdata[x];
+            item.data.map(itemPath=>{
+                response.push(itemPath.path);
+            });
+        };
+
+        return response;
     }
 
     // 获取最大值or最小值
